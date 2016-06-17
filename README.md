@@ -27,8 +27,32 @@ page](https://github.com/schismtracker/schismtracker/releases). Hopefully an
 OSX build will be soon to follow! Older builds for other platforms can be found
 on [the wiki](https://github.com/schismtracker/schismtracker/wiki).
 
-## Compilation
+### Building Schism Tracker
 
-See the
-[docs/](https://github.com/schismtracker/schismtracker/tree/master/docs) folder
-for platform-specific instructions.
+To build Schism Tracker, you should set up a build-directory. From the schismtracker directory:
+
+`mkdir -p build && cd build && ../configure && make`
+
+Schism Tracker can be built using the mingw32 cross-compiler on a Linux host. You will also need the SDL MINGW32 development library. If you unpacked it into /usr/i586-mingw32/, you could use the following to cross-compile Schism Tracker for Win32:
+
+`mkdir win32-build`
+`cd build`
+`env SDL_CONFIG=/usr/i586-mingw32/sdl-config    \`
+    `../configure --{host,target}=i586-mingw32  \`
+                 `--without-x``
+`make`
+
+### Distribution-specific instructions
+
+Getting the prerequisites covered is fairly straightforward in most Linux distributions.
+
+Ubuntu / Debian
+
+`apt-get install build-essential automake autoconf autoconf-archive          \`
+                `libx11-dev libxext-dev libxv-dev libxxf86misc-dev           \`
+                `libxxf86vm-dev libsdl1.2-dev libasound2-dev mercurial libtool`
+
+Additionally, for cross-compiling win32 binaries:
+
+`apt-get install mingw32 mingw32-binutils mingw32-runtime nsis`
+
